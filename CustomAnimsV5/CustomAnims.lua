@@ -225,7 +225,7 @@ CustomStylePlayer = function()
     elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/RCV", true) then
       PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE","Act/Globals.act")
     else
-      PedSetActionNode(gPlayer, "/Global/B_Striker_A/Offense/Short/Strikes/HeavyAttacks/SwingPunch/SwingPunch_R", "Act/Anim/B_Striker_A.act")
+      PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense", "Act/Anim/G_Johnny.act")
     end
   --Right Arrow
   elseif IsButtonBeingPressed(1,0) then
@@ -240,7 +240,11 @@ CustomStylePlayer = function()
       }, math.random(1,2)
       PedSetActionNode(gPlayer, a[b][1], a[b][2])
     else
-      PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/HeavyAttacks/Uppercut", "act/anim/P_Striker_A.act")
+      local c, d = {
+        {"/Global/P_Striker_A/Offense/Short/Strikes/HeavyAttacks/Uppercut", "act/anim/P_Striker_A.act"},
+        {"/Global/B_Striker_A/Offense/Short/Strikes/HeavyAttacks/SwingPunch/SwingPunch_R", "Act/Anim/B_Striker_A.act"}
+      }, math.random(1,2)
+      PedSetActionNode(gPlayer, c[d][1], c[d][2])
     end
   --LS
   elseif IsButtonBeingPressed(14,0) then
