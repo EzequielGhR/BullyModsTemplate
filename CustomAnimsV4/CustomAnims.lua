@@ -223,7 +223,7 @@ CustomStylePlayer = function()
       PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/StandingReversals/Sprawl/GIVE", "Act/Globals.act")
       --while mounted (RCV)
     elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/RCV", true) then
-      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE","Act/Globals.act")
+      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE", "Act/Globals.act")
     else
       PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense", "Act/Anim/G_Johnny.act")
     end
@@ -254,6 +254,6 @@ CustomStylePlayer = function()
     PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
   --X+Square
   elseif IsButtonBeingPressed(6,0) and IsButtonBeingPressed(7,0) then
-    PedSetActionNode(gPlayer, "/Global/BOSS_Darby/Offense/Short/Grapples/HeavyAttacks/Catch_Throw")
+    PedSetActionNode(gPlayer, "/Global/BOSS_Darby/Offense/Short/Grapples/HeavyAttacks/Catch_Throw", "Act/Anim/BOSS_Darby.act")
   end
 end
