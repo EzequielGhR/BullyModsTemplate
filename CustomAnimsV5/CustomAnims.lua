@@ -237,16 +237,22 @@ CustomStylePlayer = function()
     --strafe
     PedSetActionNode(gPlayer,"/Global/G_Striker_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/G_Striker_A.act")
     Strafe = true
-  elseif (not IsButtonPressed(10,0) or not InMotion()) and Strafe and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
-    PlayerStopAllActionControllers()
-    Strafe = false
-  elseif Strafe then
-    local x,y,z = PedGetPosXYZ(PedGetTargetPed())
-    PedFaceXYZ(gPlayer,x,y,z)
+  end
 
-  --Hold Left Arrow
-  elseif IsButtonPressed(0,0) then
-    PedSetActionNode(gPlayer, "/Global/Nemesis/Offense/Short/Strikes/ShortAttacks", "Act/Anim/Nemesis.act")
+  while Strafe do
+    Wait(0)
+    if (not IsButtonPressed(10,0) or not InMotion()) and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
+      PedSetActionNode("/Global/Player", "Act/anim/Player.act")
+      Strafe = false
+    else
+      local x,y,z = PedGetPosXYZ(PedGetTargetPed())
+      PedFaceXYZ(gPlayer,x,y,z)
+    end
+  end
+
+  --Left Arrow
+  if IsButtonBeingPressed(0,0) then
+    PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense/Short/Strikes/LightAttacks","Act/Anim/G_Johnny.act")
   --Hold Down arrow
   elseif IsButtonPressed(3,0) then
     PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
@@ -303,4 +309,3 @@ CustomStylePlayer = function()
     PedSetActionNode(gPlayer, "/Global/Nemesis/Offense/Short/Strikes/HeavyAttacks/HeavyPunch1","Act/Anim/Nemesis.act")
   end
 end
-
