@@ -217,7 +217,7 @@ CustomStylePlayer = function()
 --function body
   --Hold Left Arrow
   if IsButtonPressed(0,0) then
-    PedSetActionNode(gPlayer, "/Global/Nemesis/Offense/Medium/Strikes/ShortAttacks", "Act/Anim/Nemesis.act")
+    PedSetActionNode(gPlayer, "/Global/Nemesis/Offense/Short/Strikes/ShortAttacks", "Act/Anim/Nemesis.act")
   --Hold Down arrow
   elseif IsButtonPressed(3,0) then
     PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
