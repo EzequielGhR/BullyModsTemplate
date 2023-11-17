@@ -12,11 +12,18 @@ function main()
   LoadAnim()
   while true do
     Wait(0)
-    if IsButtonPressed(10,0) and InMotion() then
+    Strafe = false
+    if IsButtonPressed(10,0) and InMotion() and (not Strafe) and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
       --strafe
-      PedSetActionNode(gPlayer,"/Global/P_Grappler_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/P_Grappler_A.act")
+      PedSetActionNode(gPlayer,"/Global/G_Striker_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/G_Striker_A.act")
+      Strafe = true
       CustomStylePlayer()
-    else
+    elseif (not IsButtonPressed(10,0) or not InMotion()) and Strafe and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
+      Strafe = false
+      CustomStylePlayer()
+    elseif Strafe then
+      local X,Y,Z = PedGetPosXYZ(PedGetTargetPed())
+      PedFaceXYZ(gPlayer,X,Y,Z)
       CustomStylePlayer()
     end
   end
