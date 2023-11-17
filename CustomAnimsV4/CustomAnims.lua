@@ -215,20 +215,12 @@ end
 
 CustomStylePlayer = function()
 --function body
-  --Tap Left Arrow
-  if IsButtonBeingPressed(0,0) then
-    --While Grabbing
-    if PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Front/Grapples/Hold_Idle", "Act/Globals.act", true) then
-      --PedSetActionNode(gPlayer, "/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BackBreaker/Give", "Act/Globals.act")
-      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/StandingReversals/Sprawl/GIVE", "Act/Globals.act")
-      --while mounted (RCV)
-    elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/RCV", true) then
-      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE", "Act/Globals.act")
-    end
   --Hold Left Arrow
   if IsButtonPressed(0,0) then
     PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense/Short/Strikes/LightAttacks", "Act/Anim/G_Johnny.act")
-  end
+  --Hold Down arrow
+  elseif IsButtonPressed(3,0) then
+    PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
   --Right Arrow
   elseif IsButtonBeingPressed(1,0) then
     --While mounting (GIVE)
@@ -251,12 +243,19 @@ CustomStylePlayer = function()
   --LS
   elseif IsButtonBeingPressed(14,0) then
     PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Medium/Strikes/HeavyAttack/KickThrust", "act/anim/G_Striker_A.act")
-  --Hold Down arrow
-  elseif IsButtonPressed(3,0) then
-    PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
   --X+Square
   elseif IsButtonBeingPressed(6,0) and IsButtonBeingPressed(7,0) then
-    PedSetActionNode(gPlayer, "/Global/BOSS_Darby/Offense/Short/Grapples/HeavyAttacks/Catch_Throw", "Act/Anim/BOSS_Darby.act")
+    --While Grabbing
+    if PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Front/Grapples/Hold_Idle", "Act/Globals.act", true) then
+      --PedSetActionNode(gPlayer, "/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BackBreaker/Give", "Act/Globals.act")
+      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/StandingReversals/Sprawl/GIVE", "Act/Globals.act")
+      --while mounted (RCV)
+    elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/RCV", true) then
+      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE", "Act/Globals.act")
+    else
+      PedSetActionNode(gPlayer, "/Global/BOSS_Darby/Offense/Short/Grapples/HeavyAttacks/Catch_Throw", "Act/Anim/BOSS_Darby.act")
+    end
+  --Triangle+Circle
   elseif IsButtonBeingPressed(8,0) and IsButtonBeingPressed(9,0) then
     PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense", "Act/Anim/G_Johnny.act")
   end
