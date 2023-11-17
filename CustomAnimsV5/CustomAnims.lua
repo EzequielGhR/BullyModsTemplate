@@ -17,18 +17,14 @@ function main()
       --strafe
       PedSetActionNode(gPlayer,"/Global/G_Striker_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/G_Striker_A.act")
       Strafe = true
-      CustomStylePlayer()
     elseif (not IsButtonPressed(10,0) or not InMotion()) and Strafe and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
       PedSetActionTree(gPlayer,"/Global/Player", "Act/anim/Player.act")
       Strafe = false
-      CustomStylePlayer()
     elseif Strafe then
-      local X,Y,Z = PedGetPosXYZ(PedGetTargetPed(gPlayer))
-      PedFaceXYZ(gPlayer,X,Y,Z)
-      CustomStylePlayer()
-    else
-      CustomStylePlayer()
+      local x,y,z = PedGetPosXYZ(PedGetTargetPed())
+      PedFaceXYZ(gPlayer,x,y,z)
     end
+    CustomStylePlayer()
   end
 end
 
