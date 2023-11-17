@@ -233,6 +233,7 @@ end
 CustomStylePlayer = function()
   --function body
   --Hold Left Arrow
+  PedSetActionTree(gPlayer,"/Global/Player", "Act/anim/Player.act")
   if IsButtonPressed(0,0) then
     PedSetActionNode(gPlayer, "/Global/BOSS_Russell/Offense/Short/Strikes/LightAttacks", "act/anim/BOSS_Russell.act")
 --Hold Down arrow
