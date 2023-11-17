@@ -215,9 +215,13 @@ end
 
 CustomStylePlayer = function()
 --function body
+local e, f = {
+  {"/Global/J_Melee_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Melee_A.act"},
+  {"/Global/J_Striker_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Striker_A.act"}
+}, math.random(1,2)
  --Hold Left Arrow
  if IsButtonPressed(0,0) then
-  PedSetActionNode(gPlayer, "/Global/G_Johnny/Offense/Short/Strikes/LightAttacks", "Act/Anim/G_Johnny.act")
+  PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/G_Striker_A.act")
 --Hold Down arrow
 elseif IsButtonPressed(3,0) then
   PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
@@ -245,10 +249,6 @@ elseif IsButtonBeingPressed(1,0) then
     PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Medium/Strikes/HeavyAttack/KickThrust", "act/anim/G_Striker_A.act")
   --Hold R2
   elseif IsButtonPressed(12,0) then
-    local e, f = {
-      {"/Global/J_Melee_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Melee_A.act"},
-      {"/Global/J_Striker_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Striker_A.act"}
-    }, math.random(1,2)
     PedSetActionNode(gPlayer, e[f][1], e[f][2])
   --X+Square
   elseif IsButtonBeingPressed(6,0) and IsButtonBeingPressed(7,0) then
