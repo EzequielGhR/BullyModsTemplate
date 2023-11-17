@@ -19,11 +19,14 @@ function main()
       Strafe = true
       CustomStylePlayer()
     elseif (not IsButtonPressed(10,0) or not InMotion()) and Strafe and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
+      PedSetActionTree(gPlayer,"/Global/Player", "Act/anim/Player.act")
       Strafe = false
       CustomStylePlayer()
     elseif Strafe then
-      local X,Y,Z = PedGetPosXYZ(PedGetTargetPed())
+      local X,Y,Z = PedGetPosXYZ(PedGetTargetPed(gPlayer))
       PedFaceXYZ(gPlayer,X,Y,Z)
+      CustomStylePlayer()
+    else
       CustomStylePlayer()
     end
   end
