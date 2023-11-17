@@ -213,43 +213,49 @@ LoadAnim = function()
     LoadAnimationGroup("TE_Female")
 end
 
-CustomStylePlayer = function()
---function body
-local e, f = {
-  {"/Global/J_Melee_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Melee_A.act"},
-  {"/Global/J_Striker_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Striker_A.act"}
-}, math.random(1,2)
- --Hold Left Arrow
- if IsButtonPressed(0,0) then
-  PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/G_Striker_A.act")
+InMotion = function()
+  local pos = 0.08
+  return GetStickValue(16,0) > pos or GetStickValue(16,0) < -pos or GetStickValue(17,0) > pos or GetStickValue(17,0) < -pos
+end
+
+CustomStyle = function()
+  --function body
+  --Hold Left Arrow
+  if IsButtonPressed(0,0) then
+    PedSetActionNode(gPlayer, "/Global/BOSS_Russell/Offense/Short/Strikes/LightAttacks", "act/anim/BOSS_Russell.act")
 --Hold Down arrow
-elseif IsButtonPressed(3,0) then
-  PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
---Right Arrow
-elseif IsButtonBeingPressed(1,0) then
-  --While mounting (GIVE)
-  if PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/GIVE", true) then
-    PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalPunches", "Act/Globals.act")
-  --while grabbing
-  elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Front/Grapples/Hold_Idle", "Act/Globals.act", true) then
-    local a, b = {
-      {"/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BodySlam/Give", "Act/Globals.act"},
-      {"/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BackBreaker/Give", "Act/Globals.act"}
-    }, math.random(1,2)
-    PedSetActionNode(gPlayer, a[b][1], a[b][2])
-  else
-    local c, d = {
-      {"/Global/P_Striker_A/Offense/Short/Strikes/HeavyAttacks/Uppercut", "act/anim/P_Striker_A.act"},
-      {"/Global/B_Striker_A/Offense/Short/Strikes/HeavyAttacks/SwingPunch/SwingPunch_R", "Act/Anim/B_Striker_A.act"}
-    }, math.random(1,2)
-    PedSetActionNode(gPlayer, c[d][1], c[d][2])
-  end
+  elseif IsButtonPressed(3,0) then
+    PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
+  --Right Arrow
+  elseif IsButtonBeingPressed(1,0) then
+    --While mounting (GIVE)
+    if PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/GIVE", true) then
+      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/Mount/GrappleMount/Headbutt", "Globals/DO_Grappler_A.act")
+    --while grabbing
+    elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Front/Grapples/Hold_Idle", "Act/Globals.act", true) then
+      local a, b = {
+        {"/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BodySlam/Give", "Act/Globals.act"},
+        {"/Global/Actions/Grapples/Front/Grapples/GrappleMoves/BackBreaker/Give", "Act/Globals.act"}
+      }, math.random(1,2)
+      PedSetActionNode(gPlayer, a[b][1], a[b][2])
+    else
+      local c, d = {
+        {"/Global/P_Striker_A/Offense/Short/Strikes/HeavyAttacks/Uppercut", "act/anim/P_Striker_A.act"},
+        {"/Global/B_Striker_A/Offense/Short/Strikes/HeavyAttacks/SwingPunch/SwingPunch_R", "Act/Anim/B_Striker_A.act"}
+      }, math.random(1,2)
+      PedSetActionNode(gPlayer, c[d][1], c[d][2])
+    end
   --LS
   elseif IsButtonBeingPressed(14,0) then
-    PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Medium/Strikes/HeavyAttack/KickThrust", "act/anim/G_Striker_A.act")
+    local e, f = {
+      {"/Global/G_Striker_A/Offense/Medium/Strikes/HeavyAttack/KickThrust", "act/anim/G_Striker_A.act"},
+      {"/Global/Nemesis/Offense/Medium/Strikes/HeavyAttacks/JackieKick", "act/anim/Nemesis.act"},
+      {"/Global/G_Striker_A/Offense/Short/Strikes/HeavyAttacks/HeavyKnee","act/anim/G_Striker_A.act"}
+    }, math.random(1,3)
+    PedSetActionNode(gPlayer, e[f][1], e[f][2])
   --Hold R2
   elseif IsButtonPressed(12,0) then
-    PedSetActionNode(gPlayer, e[f][1], e[f][2])
+    PedSetActionNode(gPlayer, "/Global/J_Melee_A/Offense/Short/Strikes/LightAttacks", "act/anim/J_Melee_A.act")
   --X+Square
   elseif IsButtonBeingPressed(6,0) and IsButtonBeingPressed(7,0) then
     --While Grabbing
@@ -259,6 +265,9 @@ elseif IsButtonBeingPressed(1,0) then
       --while mounted (RCV)
     elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/RCV", true) then
       PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalToPunch/GIVE", "Act/Globals.act")
+    --While mounting (GIVE)
+    elseif PedIsPlaying(gPlayer, "/Global/Actions/Grapples/Mount/MountIdle/GIVE", true) then
+      PedSetActionNode(gPlayer, "/Global/Actions/Grapples/GrappleReversals/MountReversals/MountReversalPunches", "Act/Globals.act")
     else
       PedSetActionNode(gPlayer, "/Global/BOSS_Darby/Offense/Short/Grapples/HeavyAttacks/Catch_Throw", "Act/Anim/BOSS_Darby.act")
     end
@@ -268,5 +277,20 @@ elseif IsButtonBeingPressed(1,0) then
   --X+Circle
   elseif IsButtonBeingPressed(7,0) and IsButtonBeingPressed(8,0) then
     PedSetActionNode(gPlayer, "/Global/Nemesis/Offense/Short/Strikes/HeavyAttacks/HeavyPunch1","Act/Anim/Nemesis.act")
+  end
+end
+
+CustomStylePlayer = function()
+  for NPC, P in (PedFindInAreaXYZ(0,0,0,99999)) do
+    if PedIsValid(P) and P ~= gPlayer then
+      local Ped = PedGetTargetPed(gPlayer)
+      if PedIsValid(Ped) then
+        if IsButtonPressed(10,0) and InMotion() then
+          --strafe
+          PedSetActionNode(gPlayer,"/Global/P_Grappler_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/P_Striker_A.act")
+        end
+        CustomStyle()
+      end
+    end
   end
 end
