@@ -239,7 +239,7 @@ CustomStylePlayer = function()
     Strafe = true
   end
 
-  while Strafe do
+  if Strafe then
     if (not IsButtonPressed(10,0) or not InMotion()) and (not PedIsValid(PedGetGrappleTargetPed(gPlayer))) then
       PedSetActionNode("/Global/Player", "Act/anim/Player.act")
       Strafe = false
@@ -251,7 +251,7 @@ CustomStylePlayer = function()
 
   --Hold Left Arrow
   if IsButtonPressed(0,0) then
-    PedSetActionNode(gPlayer, "/Global/G_Melee_A/Offense/Short/Strikes/LightAttacks", "act/anim/G_Melee_A.act")
+    PedSetActionNode(gPlayer, "/Global/G_Striker_A/Offense/Short/Strikes/LightAttacks", "act/anim/G_Striker_A.act")
   --Hold Down arrow
   elseif IsButtonPressed(3,0) then
     PedSetActionNode(gPlayer, "/Global/P_Striker_A/Offense/Short/Strikes/LightAttacks", "Act/Anim/P_Striker_A.act")
