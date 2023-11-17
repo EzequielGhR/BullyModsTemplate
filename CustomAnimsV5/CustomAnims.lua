@@ -5,15 +5,21 @@ Author: RanggaBS
 
 -- Main function:
 function main()
-    -- Waiting for the game's appearing:
-    while not SystemIsReady() or AreaIsLoading() do
-        Wait(0)
+  -- Waiting for the game's appearing:
+  while not SystemIsReady() or AreaIsLoading() do
+    Wait(0)
+  end
+  LoadAnim()
+  while true do
+    Wait(0)
+    if IsButtonPressed(10,0) and InMotion() then
+      --strafe
+      PedSetActionNode(gPlayer,"/Global/P_Grappler_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/P_Grappler_A.act")
+      CustomStylePlayer()
+    else
+      CustomStylePlayer()
     end
-    LoadAnim()
-    while true do
-        Wait(0)
-        CustomStylePlayer()
-    end
+  end
 end
 
 -- STimeCycle:
@@ -218,7 +224,7 @@ InMotion = function()
   return GetStickValue(16,0) > pos or GetStickValue(16,0) < -pos or GetStickValue(17,0) > pos or GetStickValue(17,0) < -pos
 end
 
-CustomStyle = function()
+CustomStylePlayer = function()
   --function body
   --Hold Left Arrow
   if IsButtonPressed(0,0) then
@@ -280,17 +286,3 @@ CustomStyle = function()
   end
 end
 
-CustomStylePlayer = function()
-  for NPC, P in (PedFindInAreaXYZ(0,0,0,99999)) do
-    if PedIsValid(P) and P ~= gPlayer then
-      local Ped = PedGetTargetPed(gPlayer)
-      if PedIsValid(Ped) then
-        if IsButtonPressed(10,0) and InMotion() then
-          --strafe
-          PedSetActionNode(gPlayer,"/Global/P_Grappler_A/Default_KEY/ExecuteNodes/LocomotionOverride/Combat/CombatBasic", "Act/anim/P_Striker_A.act")
-        end
-        CustomStyle()
-      end
-    end
-  end
-end
