@@ -20,3 +20,8 @@ function main()
         Wait(0)
     until not Alive
 end
+
+InMotion = function()
+    local pos = 0.08
+    return GetStickValue(16,0) > pos or GetStickValue(16,0) < -pos or GetStickValue(17,0) > pos or GetStickValue(17,0) < -pos
+  end
