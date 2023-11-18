@@ -213,11 +213,6 @@ LoadAnim = function()
     LoadAnimationGroup("TE_Female")
 end
 
-InMotion = function()
-  local pos = 0.08
-  return GetStickValue(16,0) > pos or GetStickValue(16,0) < -pos or GetStickValue(17,0) > pos or GetStickValue(17,0) < -pos
-end
-
 CustomStylePlayer = function()
   --function body
   --Hold Left Arrow
